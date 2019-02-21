@@ -12,11 +12,14 @@ public class SwiftOntologyDartSdkPlugin: NSObject, FlutterPlugin {
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
-  public func handle(_: FlutterMethodCall, result: @escaping FlutterResult) {
+  public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     var m = mpz_t()
     __gmpz_init(&m)
     print(m)
     print(b58enc)
+    print(call.method)
+    print(call.arguments ?? false)
+    print(1)
     result("iOS " + UIDevice.current.systemVersion)
   }
 }
