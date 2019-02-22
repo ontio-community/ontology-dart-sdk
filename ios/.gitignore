@@ -34,5 +34,6 @@ Icon?
 .tags*
 
 /Flutter/Generated.xcconfig
+
 Frameworks/
 !scripts/frameworks/

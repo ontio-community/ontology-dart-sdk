@@ -22,7 +22,8 @@ LOG=${BUILD_DIR}/openssl.log
 FMK_BASE_NAME=openssl
 FMK_FILE_NAME=openssl.framework
 FMK_FILE=${BUILD_DIR}/${FMK_FILE_NAME}
-FMK_DST=${DIR}/../../Frameworks/${FMK_FILE_NAME}
+FMK_DST_DIR=${DIR}/../../Frameworks
+FMK_DST=${FMK_DST_DIR}/${FMK_FILE_NAME}
 
 # http://fitnr.com/showing-a-bash-spinner.html
 spinner() {
@@ -193,7 +194,8 @@ create_framework() {
 
   create_modulemap
 
-  cp -rf $FMK_FILE ${DIR}/../../Frameworks/
+  mkdir -p $FMK_DST_DIR /dev/null 2>&1
+  mv $FMK_FILE $FMK_DST_DIR/
 }
 
 skip_if_dup() {

@@ -8,7 +8,8 @@ OUT_DIR=${BUILD_DIR}/out
 FMK_BASE_NAME=base58
 FMK_FILE_NAME=base58.framework
 FMK_FILE=${BUILD_DIR}/${FMK_FILE_NAME}
-FMK_DST=${DIR}/../../Frameworks/${FMK_FILE_NAME}
+FMK_DST_DIR=${DIR}/../../Frameworks
+FMK_DST=${FMK_DST_DIR}/${FMK_FILE_NAME}
 
 mkd() {
   dir=$1
@@ -132,7 +133,8 @@ create_fmk() {
 
   patch_header
 
-  cp -rf $FMK_FILE ${DIR}/../../Frameworks/
+  mkdir -p $FMK_DST_DIR /dev/null 2>&1
+  mv $FMK_FILE $FMK_DST_DIR/
 }
 
 skip_if_dup() {

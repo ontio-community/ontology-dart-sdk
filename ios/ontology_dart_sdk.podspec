@@ -4,13 +4,13 @@
 Pod::Spec.new do |s|
   s.name             = 'ontology_dart_sdk'
   s.version          = '0.0.1'
-  s.summary          = 'A new flutter plugin project.'
+  s.summary          = 'Ontology Dart SDK'
   s.description      = <<-DESC
-A new flutter plugin project.
+SDK for Ontology blockchain.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://github.com/ontio-community/ontology-dart-sdk'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'hsiaosiyuan' => 'hsiaosiyuan0@outlook.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'

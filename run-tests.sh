@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/usr/bin/env bash
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 
@@ -9,8 +9,8 @@ cd $ROOT/example/ios/
 pod install > /dev/null 2>&1
 cd $ROOT
 
-# format swift files
-swiftformat . 
+# format objc files
+find ios/Classes/ -iname *.h -o -iname *.m | xargs clang-format -i -style=file
 
 # run tests
 set -o pipefail && \

@@ -32,17 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "25A3E9B6221EFDA900B3AA6B"
-               BuildableName = "ontology_dart_sdk_exampleTests.xctest"
-               BlueprintName = "ontology_dart_sdk_exampleTests"
-               ReferencedContainer = "container:Runner.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "250075FE221F0372002D70AE"
+               BlueprintIdentifier = "257D401E221FF1090063EA03"
                BuildableName = "ontology_dart_sdk_tests.xctest"
                BlueprintName = "ontology_dart_sdk_tests"
                ReferencedContainer = "container:Runner.xcodeproj">
