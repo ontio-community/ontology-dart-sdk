@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ROOT="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$(dirname "$0")" && pwd)"/../
 
 # clean build cache
 rm -rf ~/Library/Developer/Xcode/DerivedData/Runner-*/Build/
@@ -8,9 +8,6 @@ cd $ROOT/example/ios/
 # should to recreate .xcworkspace file after cleans build
 pod install > /dev/null 2>&1
 cd $ROOT
-
-# format objc files
-find ios/Classes/ -iname *.h -o -iname *.m | xargs clang-format -i -style=file
 
 # run tests
 set -o pipefail && \
