@@ -7,6 +7,7 @@ rm -rf ~/Library/Developer/Xcode/DerivedData/Runner-*/Build/
 cd $ROOT/example/ios/
 # should to recreate .xcworkspace file after cleans build
 pod install > /dev/null 2>&1
+flutter build ios
 cd $ROOT
 
 # run tests

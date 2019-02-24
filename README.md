@@ -1,14 +1,12 @@
 # ontology_dart_sdk
 
-A new flutter plugin project.
+This is a Dart SDK for the Ontology blockchain and could be used in the Flutter development.
 
-## Getting Started
+It supports:
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.io/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+* Wallet management
+* Digital identity management
+* Digital asset management
+* Smart Contract deployment and invocation
+* Ontology blockchain API
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.

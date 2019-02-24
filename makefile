@@ -2,4 +2,4 @@ codestyle:
 	bash ./scripts/code-style.sh
 
 test:
-	bash ./scripts/run-test.sh
+	bash ./scripts/run-tests.sh
