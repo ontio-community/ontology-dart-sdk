@@ -1,2 +1,3 @@
 Podfile linguist-vendored
 *.podspec linguist-vendored
+/ios/Classes/Crypto/WordList.swift linguist-vendored
