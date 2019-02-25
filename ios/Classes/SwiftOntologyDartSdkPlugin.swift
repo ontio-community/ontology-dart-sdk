@@ -8,7 +8,14 @@ public class SwiftOntologyDartSdkPlugin: NSObject, FlutterPlugin {
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
-  public func handle(_: FlutterMethodCall, result: @escaping FlutterResult) {
-    result("iOS " + UIDevice.current.systemVersion)
+  public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+    let agents: [OpAgent] = [CryptoAgent(), BigIntAgent()]
+    for agent in agents {
+      if agent.name == call.method {
+        agent.process(args: call.arguments as! [Any], cb: result)
+        return
+      }
+    }
+    result(FlutterMethodNotImplemented)
   }
 }

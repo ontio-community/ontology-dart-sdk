@@ -48,7 +48,10 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Text(
+            'Running on: $_platformVersion\n',
+            key: Key('platform'),
+          ),
         ),
       ),
     );
