@@ -97,4 +97,8 @@ class Convert {
   static Uint8List strToBytes(String str) {
     return Uint8List.fromList(Utf8Encoder().convert(str));
   }
+
+  static String bytesToStr(Uint8List bytes) {
+    return Utf8Decoder().convert(bytes.toList());
+  }
 }

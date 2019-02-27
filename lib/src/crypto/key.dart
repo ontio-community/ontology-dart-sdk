@@ -1,14 +1,13 @@
 import 'dart:typed_data';
+import 'package:collection/collection.dart';
 import '../constant.dart';
+import '../common/shim.dart';
 import 'signature.dart';
 import 'bridge.dart';
 import 'scrypt.dart';
-import '../common/convert.dart';
-import '../common/buffer.dart';
 import 'address.dart';
 import 'hash.dart';
 import 'base58.dart';
-import 'package:collection/collection.dart';
 
 class Curve {
   static Curve p224 = Curve._internal('P-224', 1);

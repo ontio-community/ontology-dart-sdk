@@ -1,7 +1,6 @@
 import 'dart:typed_data';
-import '../common/buffer.dart';
+import '../common/shim.dart';
 import '../constant.dart';
-import '../common/convert.dart';
 import 'package:collection/collection.dart';
 
 class SignatureSchema {

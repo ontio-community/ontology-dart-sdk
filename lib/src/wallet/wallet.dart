@@ -1,6 +1,6 @@
+import '../crypto/shim.dart';
 import 'account.dart';
 import 'identity.dart';
-import '../crypto/shim.dart';
 
 class Wallet {
   String name;

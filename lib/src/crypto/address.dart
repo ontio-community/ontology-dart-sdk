@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 import 'package:convert/convert.dart';
 import '../common/shim.dart';
+import '../neocore/shim.dart';
 import '../constant.dart';
 import 'base58.dart';
 import 'hash.dart';
-import '../neocore/program.dart';
 import 'key.dart';
 
 class Address {
@@ -20,8 +20,12 @@ class Address {
     return encodeToBase58(value);
   }
 
-  String toHex() {
+  String get hexEncodedLE {
     return hex.encode(value.reversed.toList());
+  }
+
+  Uint8List get valueLE {
+    return Uint8List.fromList(value.reversed.toList());
   }
 
   static Future<Uint8List> decode(String b58) async {

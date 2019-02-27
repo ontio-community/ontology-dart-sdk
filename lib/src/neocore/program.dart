@@ -1,8 +1,8 @@
 import 'dart:typed_data';
-import '../crypto/key.dart';
+import '../crypto/shim.dart';
+import '../common/shim.dart';
 import 'script.dart';
-import '../common/convert.dart';
-import '../common/buffer.dart';
+import 'opcode.dart';
 
 class ProgramInfo {
   int m = 0;
@@ -33,8 +33,8 @@ class ProgramBuilder extends ScriptBuilder {
     } else if (pubkey.algorithm == KeyType.eddsa ||
         pubkey.algorithm == KeyType.sm2) {
       ScriptBuilder b = ScriptBuilder();
-      b.pushNum(x: pubkey.algorithm.value);
-      b.pushNum(x: pubkey.parameters.curve.value);
+      b.pushNum(pubkey.algorithm.value);
+      b.pushNum(pubkey.parameters.curve.value);
       b.pushRawBytes(pubkey.raw);
       pushVarBytes(b.buf.bytes);
     }
@@ -45,16 +45,16 @@ class ProgramBuilder extends ScriptBuilder {
     if (len == 0) throw ArgumentError('empty bytes');
 
     if (len <= OpCode.pushbytes75 + 1 - OpCode.pushbytes1) {
-      pushNum(x: len + OpCode.pushbytes1 - 1);
+      pushNum(len + OpCode.pushbytes1 - 1);
     } else if (len < 0x100) {
       pushOpcode(OpCode.pushdata1);
-      pushNum(x: len);
+      pushNum(len);
     } else if (len < 0x10000) {
       pushOpcode(OpCode.pushdata2);
-      pushNum(x: len, len: 2, bigEndian: false);
+      pushNum(len, len: 2, bigEndian: false);
     } else if (len < 0x100000000) {
       pushOpcode(OpCode.pushdata4);
-      pushNum(x: len, len: 4, bigEndian: false);
+      pushNum(len, len: 4, bigEndian: false);
     } else {
       throw ArgumentError('Invalid bytes len: ' + len.toString());
     }

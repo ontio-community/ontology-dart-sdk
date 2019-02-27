@@ -18,4 +18,6 @@ class Constant {
   static var defaultSm2Id = Convert.strToBytes('1234567812345678');
 
   static const ontBip44Path = "m/44'/1024'/0'/0/0";
+  
+  static const nativeInvokeName = 'Ontology.Native.Invoke';
 }

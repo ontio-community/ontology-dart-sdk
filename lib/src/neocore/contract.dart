@@ -1,7 +1,8 @@
 import 'dart:typed_data';
-import 'package:meta/meta.dart';
-import '../crypto/address.dart';
-import '../neocore/script.dart';
+import '../crypto/shim.dart';
+import '../common/shim.dart';
+import 'script.dart';
+import 'opcode.dart';
 
 class AbiParameterType {
   static AbiParameterType byteArray = AbiParameterType("ByteArray", 0x00);
@@ -19,7 +20,7 @@ class AbiParameterType {
       : name = name,
         value = value;
 
-  static AbiParameterType from(String name) {
+  factory AbiParameterType.fromName(String name) {
     switch (name) {
       case 'ByteArray':
         return byteArray;
@@ -53,7 +54,7 @@ class AbiParameter {
 
   AbiParameter.fromJson(Map<String, dynamic> json)
       : name = json['name'],
-        type = AbiParameterType.from(json['type']),
+        type = AbiParameterType.fromName(json['type']),
         value = json['value'];
 
   Map<String, dynamic> toJson() =>
@@ -65,13 +66,7 @@ class AbiFunction {
   List<AbiParameter> parameters = [];
   String returnType;
 
-  AbiFunction(
-      {@required String name,
-      @required List<AbiParameter> parameters,
-      String returnType = 'any'})
-      : name = name,
-        parameters = parameters,
-        returnType = returnType;
+  AbiFunction(this.name, this.parameters, {String returnType = 'any'});
 
   AbiFunction.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -196,33 +191,24 @@ class VmParamsBuilder extends ScriptBuilder {
     }
   }
 
-  pushParam(dynamic param) {
-    if (param is Uint8List) {
-      pushHex(param);
-    } else if (param is String) {
-      pushStr(param);
-    } else if (param is bool) {
-      pushBool(param);
-      pushOpcode(OpCode.push0);
-      pushOpcode(OpCode.boolor);
-    } else if (param is Map<String, dynamic>) {
-      pushMap(param);
-    } else if (param is List<dynamic>) {
-      for (var item in param) {
-        pushParam(item);
+  pushStruct(Struct struct) {
+    pushNum(AbiParameterType.struct.value);
+    pushNum(struct.list.length);
+    for (var item in struct.list) {
+      if (item is String) {
+        pushNum(AbiParameterType.byteArray.value);
+        pushHex(Convert.strToBytes(item));
+      } else if (item is int) {
+        pushNum(AbiParameterType.byteArray.value);
+        var sb = ScriptBuilder();
+        sb.pushVarInt(item);
+        pushHex(sb.buf.bytes);
+      } else if (item is Uint8List) {
+        pushNum(AbiParameterType.byteArray.value);
+        pushHex(item);
+      } else {
+        throw ArgumentError('Invalid params: ' + item.runtimeType);
       }
-      pushInt(param.length);
-      pushOpcode(OpCode.pack);
-    } else if (param is int) {
-      pushInt(param);
-      pushOpcode(OpCode.push0);
-      pushOpcode(OpCode.add);
-    } else if (param is BigInt) {
-      pushBigInt(param);
-      pushOpcode(OpCode.push0);
-      pushOpcode(OpCode.add);
-    } else {
-      throw ArgumentError('Unsupported param type: ' + param.runtimeType);
     }
   }
 
@@ -237,4 +223,48 @@ class VmParamsBuilder extends ScriptBuilder {
     }
     pushOpcode(OpCode.fromaltstack);
   }
+
+  pushParam(dynamic param) {
+    if (param is Uint8List) {
+      pushHex(param);
+    } else if (param is String) {
+      pushStr(param);
+    } else if (param is bool) {
+      pushBool(param);
+      pushOpcode(OpCode.push0);
+      pushOpcode(OpCode.boolor);
+    } else if (param is int) {
+      pushInt(param);
+      pushOpcode(OpCode.push0);
+      pushOpcode(OpCode.add);
+    } else if (param is BigInt) {
+      pushBigInt(param);
+      pushOpcode(OpCode.push0);
+      pushOpcode(OpCode.add);
+    } else if (param is Address) {
+      pushAddress(param);
+    } else if (param is Struct) {
+      var pb = VmParamsBuilder();
+      pb.pushStruct(param);
+      pushHex(pb.buf.bytes);
+    } else if (param is Map<String, dynamic>) {
+      pushMap(param);
+    } else if (param is List<dynamic>) {
+      for (var item in param.reversed) {
+        pushParam(item);
+      }
+      pushInt(param.length);
+      pushOpcode(OpCode.pack);
+    } else {
+      throw ArgumentError('Unsupported param type: ' + param.runtimeType);
+    }
+  }
+
+  pushFn(String fnName, List<dynamic> params) {
+    pushParam([fnName] + params);
+  }
+}
+
+class Struct {
+  List<dynamic> list = [];
 }
