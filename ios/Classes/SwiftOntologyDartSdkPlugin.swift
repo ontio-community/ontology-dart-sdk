@@ -9,7 +9,7 @@ public class SwiftOntologyDartSdkPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    let agents: [OpAgent] = [CryptoAgent(), BigIntAgent()]
+    let agents: [OpAgent] = [CryptoAgent(), CommonAgent()]
     for agent in agents {
       if agent.name == call.method {
         agent.process(args: call.arguments as! [Any], cb: result)

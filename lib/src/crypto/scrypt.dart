@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 import 'package:meta/meta.dart';
 import '../constant.dart';
-import 'method_channel.dart';
+import 'bridge.dart';
 
 class Scrypt {
-  static Future<dynamic> decryptWithGcm(
+  static Future<Uint8List> decryptWithGcm(
       {@required Uint8List encrypted,
       @required Uint8List addr58,
       @required Uint8List salt,
@@ -12,24 +12,28 @@ class Scrypt {
       ScryptParams params}) async {
     if (params == null) params = ScryptParams.defaultParams;
 
-    Uint8List derived =
-        await encrypt(password: pwd, salt: salt, params: params);
+    var derived = await encrypt(password: pwd, salt: salt, params: params);
 
-    Uint8List iv = derived.sublist(0, 11);
-    Uint8List key = derived.sublist(32);
-    return invokeCrypto('aes256gcm.decrypt', [encrypted, key, iv, addr58]);
+    var iv = derived.sublist(0, 12);
+    var key = derived.sublist(32);
+
+    var res =
+        await invokeCrypto('aes256gcm.decrypt', [encrypted, key, iv, addr58]);
+    return res as Uint8List;
   }
 
-  static Future<dynamic> encrypt(
+  static Future<Uint8List> encrypt(
       {@required Uint8List password,
       @required Uint8List salt,
       ScryptParams params}) async {
     if (params == null) params = ScryptParams.defaultParams;
 
-    return invokeCrypto('scrypt.encrypt', [password, salt, params.toJson()]);
+    var res =
+        await invokeCrypto('scrypt.encrypt', [password, salt, params.toJson()]);
+    return res as Uint8List;
   }
 
-  static Future<dynamic> encryptWithGcm(
+  static Future<Uint8List> encryptWithGcm(
       {@required Uint8List prikey,
       @required Uint8List addr58,
       @required Uint8List salt,
@@ -37,12 +41,13 @@ class Scrypt {
       ScryptParams params}) async {
     if (params == null) params = ScryptParams.defaultParams;
 
-    Uint8List derived =
-        await encrypt(password: pwd, salt: salt, params: params);
+    var derived = await encrypt(password: pwd, salt: salt, params: params);
 
-    Uint8List iv = derived.sublist(0, 11);
-    Uint8List key = derived.sublist(32);
-    return invokeCrypto('aes256gcm.encrypt', [prikey, key, iv, addr58]);
+    var iv = derived.sublist(0, 12);
+    var key = derived.sublist(32);
+    var res =
+        await invokeCrypto('aes256gcm.encrypt', [prikey, key, iv, addr58]);
+    return res as Uint8List;
   }
 }
 

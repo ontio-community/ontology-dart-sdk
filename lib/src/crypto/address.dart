@@ -1,9 +1,11 @@
 import 'dart:typed_data';
 import 'package:convert/convert.dart';
-import '../common/convert.dart';
+import '../common/shim.dart';
 import '../constant.dart';
 import 'base58.dart';
 import 'hash.dart';
+import '../neocore/program.dart';
+import 'key.dart';
 
 class Address {
   Uint8List value;
@@ -19,12 +21,12 @@ class Address {
   }
 
   String toHex() {
-    return hex.encode(value.reversed);
+    return hex.encode(value.reversed.toList());
   }
 
   static Future<Uint8List> decode(String b58) async {
     Uint8List data = await Base58.decode(b58);
-    Uint8List val = data.sublist(1, 20);
+    Uint8List val = data.sublist(1, 21);
     String act = await encodeToBase58(val);
     if (act != b58) {
       throw ArgumentError('Deformed base58 address');
@@ -33,17 +35,20 @@ class Address {
   }
 
   static Future<String> encodeToBase58(Uint8List data) async {
-    Uint8List buf = Uint8List(0);
-    buf.add(Constant.addrVersion);
-    buf.addAll(data);
-    Uint8List hash = await Hash.sha256sha256(buf);
-    Uint8List chksum = hash.sublist(0, 3);
-    buf.addAll(chksum);
-    return Base58.encode(buf);
+    var buf = Buffer();
+    buf.addUint8(Constant.addrVersion);
+    buf.appendBytes(data);
+    Uint8List hash = await Hash.sha256sha256(buf.bytes);
+    Uint8List chksum = hash.sublist(0, 4);
+    buf.appendBytes(chksum);
+    return Base58.encode(buf.bytes);
   }
 
   static Future<Address> fromBase58(String b58) async {
-    Uint8List val = await Base58.decode(b58);
+    var data = await Base58.decode(b58);
+    var val = data.sublist(1, 21);
+    var act = await encodeToBase58(val);
+    if (b58 != act) throw ArgumentError('Decode base58 error');
     return Address(val);
   }
 
@@ -55,5 +60,26 @@ class Address {
     } else {
       throw ArgumentError('Deformed address value');
     }
+  }
+
+  static Future<Address> fromPubkey(PublicKey pubkey) async {
+    var prog = ProgramBuilder.fromPubkey(pubkey);
+    var hash = await Hash.sha256ripemd160(prog.buf.bytes);
+    return Address(hash);
+  }
+
+  static Future<Address> fromVMCode(Uint8List code) async {
+    var hash = await Hash.sha256ripemd160(code);
+    return Address(hash);
+  }
+
+  static Future<String> generateOntId(PublicKey pubkey) async {
+    var addr = await Address.fromPubkey(pubkey);
+    var b58 = await addr.toBase58();
+    return 'did:ont:' + b58;
+  }
+
+  static Future<Address> fromOntId(String ontid) async {
+    return Address.fromBase58(ontid.substring(8));
   }
 }

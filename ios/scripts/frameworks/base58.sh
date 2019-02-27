@@ -133,7 +133,7 @@ create_fmk() {
 
   patch_header
 
-  mkdir -p $FMK_DST_DIR /dev/null 2>&1
+  mkdir -p $FMK_DST_DIR > /dev/null 2>&1
   mv $FMK_FILE $FMK_DST_DIR/
 }
 

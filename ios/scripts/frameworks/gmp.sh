@@ -23,21 +23,6 @@ FMK_FILE=${BUILD_DIR}/${FMK_FILE_NAME}
 FMK_DST_DIR=${DIR}/../../Frameworks
 FMK_DST=${FMK_DST_DIR}/${FMK_FILE_NAME}
 
-# http://fitnr.com/showing-a-bash-spinner.html
-spinner() {
-  local pid=$!
-  local delay=0.35
-  local spinstr='|/-\'
-  while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
-    local temp=${spinstr#?}
-    printf " [%c]  " "$spinstr"
-    local spinstr=$temp${spinstr%"$temp"}
-    sleep $delay
-    printf "\b\b\b\b\b\b"
-  done
-  printf "    \b\b\b\b"
-}
-
 mkd() {
   dir=$1
   if [ -d "{$dir}" ]; then
@@ -111,7 +96,7 @@ build() {
   for arch in ${ARCHS}
   do
     echo "Building for: ${arch}"
-    (build_for $arch >> "${LOG}" 2>&1) & spinner
+    build_for $arch >> "${LOG}" 2>&1
   done
 }
 
@@ -167,7 +152,7 @@ create_framework() {
 
   create_modulemap
 
-  mkdir -p $FMK_DST_DIR /dev/null 2>&1
+  mkdir -p $FMK_DST_DIR > /dev/null 2>&1
   mv $FMK_FILE $FMK_DST_DIR/ 
 }
 

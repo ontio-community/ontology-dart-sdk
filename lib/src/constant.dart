@@ -1,3 +1,5 @@
+import 'common/convert.dart';
+
 class Constant {
   static Map<String, dynamic> defaultAlgorithm = {
     'algorithm': 'ECDSA',
@@ -12,4 +14,8 @@ class Constant {
   };
 
   static const int addrVersion = 0x17;
+
+  static var defaultSm2Id = Convert.strToBytes('1234567812345678');
+
+  static const ontBip44Path = "m/44'/1024'/0'/0/0";
 }

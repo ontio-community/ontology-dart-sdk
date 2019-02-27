@@ -1,12 +1,14 @@
 import 'dart:typed_data';
-import 'method_channel.dart';
+import 'bridge.dart';
 
 class Base58 {
-  static Future<dynamic> decode(String encoded) async {
-    return invokeCrypto('base58.decode', [encoded]);
+  static Future<Uint8List> decode(String encoded) async {
+    var res = await invokeCrypto('base58.decode', [encoded]);
+    return res as Uint8List;
   }
 
-  static Future<dynamic> encode(Uint8List plain) async {
-    return invokeCrypto('base58.encode', [plain]);
+  static Future<String> encode(Uint8List plain) async {
+    var res = await invokeCrypto('base58.encode', [plain]);
+    return res as String;
   }
 }
