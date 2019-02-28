@@ -1,4 +1,4 @@
-import 'test_case.dart';
+import '../test_case.dart';
 import 'package:ontology_dart_sdk/crypto.dart';
 import 'package:ontology_dart_sdk/common.dart';
 

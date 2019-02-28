@@ -1,5 +1,6 @@
 import '../crypto/shim.dart';
 import '../common/shim.dart';
+import 'keystore.dart';
 
 class Account {
   String label;
@@ -15,6 +16,13 @@ class Account {
   Account(this.label, this.address, this.lock, this.encryptedKey, this.salt,
       this.publicKey, this.isDefault,
       {this.hash, this.extra});
+
+  Future<PrivateKey> decrypt(String pwd, {ScryptParams params}) async {
+    var saltBytes = Convert.base64ToBytes(salt);
+    var addr = await Address.fromBase58(address);
+    return encryptedKey.decrypt(Convert.strToBytes(pwd), addr, saltBytes,
+        params: params);
+  }
 
   static Future<Account> create(String pwd,
       {PrivateKey prikey, String label, ScryptParams params}) async {
@@ -54,6 +62,18 @@ class Account {
       {String label, ScryptParams params}) async {
     var prikey = await PrivateKey.fromMnemonic(mnemonic);
     return create(pwd, prikey: prikey, label: label, params: params);
+  }
+
+  static Future<Account> fromKeystore(Keystore ks, String pwd) async {
+    if (ks.type != 'A') throw ArgumentError('Invalid keystore type');
+
+    var algo = KeyType.fromLabel(ks.algorithm);
+    var params = ks.parameters;
+    var scrypt = ks.scrypt;
+    var enc = PrivateKey(Convert.base64ToBytes(ks.key),
+        algorithm: algo, parameters: params, scrypt: scrypt);
+    var addr = await Address.fromBase58(ks.address);
+    return fromEncryptedKey(enc, ks.label, pwd, addr, ks.salt);
   }
 
   Account.fromJson(Map<String, dynamic> json) {

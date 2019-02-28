@@ -10,4 +10,4 @@ It supports:
 * Smart Contract deployment and invocation
 * Ontology blockchain API
 
-It's recommend to take a quick view of the [Ontology Development Guide](https://dev-docs.ont.io/#/docs-en/SDKs/00-overview) before start your development. The [test](example/lib) folder contains various examples with files whose names are suffixed with `_test.dart` and they are also worth a glance.
+It's recommend to take a quick view of the [Ontology Development Guide](https://dev-docs.ont.io/#/docs-en/SDKs/00-overview) before your development. The [test cases](example/lib/test/cases) folder contains various examples they are also worth a glance.

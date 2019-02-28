@@ -57,7 +57,7 @@ class Identity {
     lock = json['lock'];
     isDefault = json['isDefault'];
     extra = json['extra'];
-    List<Map<String, dynamic>> controls = json['controls'];
+    List<dynamic> controls = json['controls'];
     controls.forEach((c) => this.controls.add(ControlData.fromJson(c)));
   }
 
@@ -74,7 +74,7 @@ class Identity {
     var enc = controls[0].encryptedKey;
     var addr = await Address.fromBase58(controls[0].address);
     var salt = Convert.base64ToBytes(controls[0].salt);
-    return enc.decrypt(Convert.strToBytes(pwd), addr, salt);
+    return enc.decrypt(Convert.strToBytes(pwd), addr, salt, params: params);
   }
 
   Keystore toKeystore() {

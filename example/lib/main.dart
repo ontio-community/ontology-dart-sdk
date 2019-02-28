@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'test_state.dart';
-import 'crypto_tests.dart';
+import 'test/test_state.dart';
+import 'test/cases/crypto.dart' as crypto;
+import 'test/cases/wallet.dart' as wallet;
 
 void main() => runApp(MyApp());
 
@@ -11,6 +12,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends TestState {
   void setupTests() {
-    testCases.forEach((t) => addTest(t));
+    crypto.testCases.forEach((t) => addTest(t));
+    wallet.testCases.forEach((t) => addTest(t));
   }
 }

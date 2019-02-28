@@ -33,7 +33,10 @@ abstract class TestState extends State {
       var pass = false;
       try {
         pass = await test.runner();
-      } catch (e) {}
+      } catch (e, stacktrace) {
+        print('[NOT PASS] $name: ' + e.toString());
+        print(stacktrace.toString());
+      }
       results.add({'name': name, 'pass': pass ? 'yes' : 'no'});
       doneCnt += 1;
 
@@ -43,6 +46,8 @@ abstract class TestState extends State {
             .map((res) => new Text(
                   '${res['name']}: ${res['pass']}',
                   key: Key(res['name']),
+                  style: TextStyle(
+                      color: res['pass'] == 'yes' ? Colors.green : Colors.red),
                 ))
             .toList();
       });

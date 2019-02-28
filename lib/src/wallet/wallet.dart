@@ -29,10 +29,10 @@ class Wallet {
     defaultOntid = json['defaultOntid'];
     defaultAccountAddress = json['defaultAccountAddress'];
 
-    List<Map<String, dynamic>> identities = json['identities'];
+    List<dynamic> identities = json['identities'] ?? [];
     identities.forEach((id) => this.identities.add(Identity.fromJson(id)));
 
-    List<Map<String, dynamic>> accounts = json['accounts'];
+    List<dynamic> accounts = json['accounts'] ?? [];
     accounts.forEach((acc) => this.accounts.add(Account.fromJson(acc)));
   }
 

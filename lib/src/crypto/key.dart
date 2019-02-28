@@ -120,7 +120,7 @@ class KeyParameters {
   KeyParameters.fromCurve(Curve curve) : curve = curve;
 
   KeyParameters.fromJson(Map<String, dynamic> json)
-      : this.fromCurve(json['curve']);
+      : this.fromCurveLabel(json['curve']);
 
   Map<String, dynamic> toJson() => {'curve': curve.label};
 }

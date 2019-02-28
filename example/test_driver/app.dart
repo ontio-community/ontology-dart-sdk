@@ -1,5 +1,5 @@
 import 'package:flutter_driver/driver_extension.dart';
-import 'package:ontology_dart_sdk_example/crypto.dart' as app;
+import 'package:ontology_dart_sdk_example/main.dart' as app;
 
 void main() {
   // This line enables the extension

@@ -1,7 +1,7 @@
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
-var testCases = [
+var cryptoTestCases = [
   'testMnemonic',
   'testEcdsaSign',
   'testEcdsaSignWithJavaResult',
@@ -15,6 +15,19 @@ var testCases = [
   'testFromWif',
   'testJavaGeneratedKey',
 ];
+
+var walletTestCases = [
+  'testAccountFromEncrypted',
+  'testAccountFromKeystore',
+  'testIdentityCreate',
+  'testIdentityFromEncrypted',
+  'testIdentityFromKeystore',
+  'testWalletCreate',
+  'testWalletAddAccount',
+  'testWalletFromJson',
+];
+
+var testCases = cryptoTestCases + walletTestCases;
 
 void main() {
   group('Crypto', () {
