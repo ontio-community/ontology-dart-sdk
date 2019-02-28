@@ -144,7 +144,7 @@ class VmParamsBuilder extends ScriptBuilder {
         pushOpcode(OpCode.append);
       });
     } else {
-      throw ArgumentError('Unsupported param type: ' + obj.runtimeType);
+      throw ArgumentError('Unsupported param type: ' + obj.runtimeType.toString());
     }
   }
 
@@ -186,7 +186,7 @@ class VmParamsBuilder extends ScriptBuilder {
         pushInt(obj.length);
         pushOpcode(OpCode.pack);
       } else {
-        throw ArgumentError('Unsupported param type: ' + obj.runtimeType);
+        throw ArgumentError('Unsupported param type: ' + obj.runtimeType.toString());
       }
     }
   }
@@ -207,7 +207,7 @@ class VmParamsBuilder extends ScriptBuilder {
         pushNum(AbiParameterType.byteArray.value);
         pushHex(item);
       } else {
-        throw ArgumentError('Invalid params: ' + item.runtimeType);
+        throw ArgumentError('Invalid params: ' + item.runtimeType.toString());
       }
     }
   }
@@ -256,7 +256,7 @@ class VmParamsBuilder extends ScriptBuilder {
       pushInt(param.length);
       pushOpcode(OpCode.pack);
     } else {
-      throw ArgumentError('Unsupported param type: ' + param.runtimeType);
+      throw ArgumentError('Unsupported param type: ' + param.runtimeType.toString());
     }
   }
 

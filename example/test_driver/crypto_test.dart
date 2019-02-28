@@ -1,18 +1,30 @@
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
+var testCases = [
+  'testMnemonic',
+  'testEcdsaSign',
+  'testEcdsaSignWithJavaResult',
+  'testSm2Sign',
+  'testSm2VerifyTsSig',
+  'testEddsaKeypair',
+  'testEddsaSign',
+  'testScryptEnc',
+  'testScryptDec',
+  'testToWif',
+  'testFromWif',
+  'testJavaGeneratedKey',
+];
+
 void main() {
   group('Crypto', () {
-    // First, define the Finders. We can use these to locate Widgets from the
-    // test suite. Note: the Strings provided to the `byValueKey` method must
-    // be the same as the Strings we used for the Keys in step 1.
-    final platformTextFinder = find.byValueKey('platform');
-
+    var finders = Map<String, SerializableFinder>();
     FlutterDriver driver;
 
     // Connect to the Flutter driver before running any tests
     setUpAll(() async {
       driver = await FlutterDriver.connect();
+      testCases.forEach((name) => finders[name] = find.byValueKey(name));
     });
 
     // Close the connection to the driver after the tests have completed
@@ -22,10 +34,12 @@ void main() {
       }
     });
 
-    test('method channel works', () async {
-      // Use the `driver.getText` method to verify the counter starts at 0.
-      String text = await driver.getText(platformTextFinder);
-      expect(text.startsWith("Running on: iOS"), true);
+    testCases.forEach((name) {
+      test(name, () async {
+        var finder = finders[name];
+        var text = await driver.getText(finder);
+        expect(text.contains('yes'), true);
+      });
     });
   });
 }
