@@ -53,7 +53,7 @@ class Convert {
     return _decodeBigInt(bytes.toList());
   }
 
-  static BigInt bytesToBigInt({Uint8List bytes, bool bigEndian = true}) {
+  static BigInt bytesToBigInt(Uint8List bytes, {bool bigEndian = true}) {
     if (!bigEndian) bytes = Uint8List.fromList(bytes.reversed.toList());
     return BigInt.parse(bytesToHexStr(bytes), radix: 16);
   }
@@ -100,5 +100,10 @@ class Convert {
 
   static String bytesToStr(Uint8List bytes) {
     return Utf8Decoder().convert(bytes.toList());
+  }
+
+  static String hexStrToStr(String hex) {
+    var bytes = hexStrToBytes(hex);
+    return bytesToStr(bytes);
   }
 }

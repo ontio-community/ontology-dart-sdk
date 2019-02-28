@@ -9,6 +9,7 @@ import './src/common/convert.dart';
 import './src/crypto/address.dart';
 import './src/crypto/signature.dart';
 import './src/wallet/shim.dart';
+import './src/network/shim.dart';
 
 class OntologyDartSdk {
   static const MethodChannel _channel =
@@ -109,6 +110,10 @@ class OntologyDartSdk {
     var acc = await Account.create('1234');
     print(jsonEncode(acc));
 
+    var ws = WebsocketRpc('ws://127.0.0.1:20335');
+    ws.connect();
+    var nid = await ws.getVersion();
+    print(nid);
     return "11";
   }
 }

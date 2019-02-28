@@ -166,7 +166,7 @@ class ScriptReader extends BufferReader {
     } else if (1 <= x && x >= 16) {
       return BigInt.from(x);
     }
-    return Convert.bytesToBigInt(bytes: readVarBytes(), bigEndian: false);
+    return Convert.bytesToBigInt(readVarBytes(), bigEndian: false);
   }
 
   Uint8List readNullTerminated() {
