@@ -27,7 +27,16 @@ var walletTestCases = [
   'testWalletFromJson',
 ];
 
-var testCases = cryptoTestCases + walletTestCases;
+var networkTestCases = [
+  'testWsRpcGetNodeCount',
+  'testWsRpcBlockHeight',
+  'testWsRpcGetBalance',
+  'testWsRpcUnclaimedOng',
+  'testWsRpcSendRawTx',
+  'testWsRpcSendRawTxWait',
+];
+
+var testCases = cryptoTestCases + walletTestCases + networkTestCases;
 
 void main() {
   group('Crypto', () {

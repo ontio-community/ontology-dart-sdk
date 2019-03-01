@@ -172,6 +172,7 @@ class Transaction extends Signable {
 
     if (payload == null) throw ArgumentError('Empty payload');
     sb.pushRawBytes(payload.serialize());
+    sb.pushNum(0);
     return sb.buf.bytes;
   }
 
@@ -193,7 +194,9 @@ class Transaction extends Signable {
   Future<Uint8List> serialize() async {
     var us = serializeUnsignedData();
     var ss = await serializeSignedData();
-    return us + ss;
+    var buf = Buffer.fromBytes(us);
+    buf.appendBytes(ss);
+    return buf.bytes;
   }
 }
 

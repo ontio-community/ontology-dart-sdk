@@ -347,7 +347,7 @@ class PublicKey extends Key {
 
   String get hexEncoded {
     var buf = Buffer();
-    if (algorithm == KeyType.sm2) {
+    if (algorithm == KeyType.ecdsa) {
       buf.appendBytes(raw);
     } else {
       buf.addUint8(algorithm.value);

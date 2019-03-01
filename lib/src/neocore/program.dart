@@ -17,14 +17,18 @@ class ProgramBuilder extends ScriptBuilder {
     pushOpcode(OpCode.checksig);
   }
 
-  ProgramBuilder.fromHexStrParams(List<String> params) : super() {
+  _fromHexStrParams(List<String> params) {
     params.sort();
     params.forEach((param) => pushBytes(Convert.hexStrToBytes(param)));
   }
 
+  ProgramBuilder.fromHexStrParams(List<String> params) : super() {
+    _fromHexStrParams(params);
+  }
+
   ProgramBuilder.fromRawParams(List<Uint8List> params) : super() {
-    List<String> ps = params.map((param) => Convert.bytesToHexStr(param));
-    ProgramBuilder.fromHexStrParams(ps);
+    var ps = params.map((param) => Convert.bytesToHexStr(param)).toList();
+    _fromHexStrParams(ps);
   }
 
   pushPubkey(PublicKey pubkey) {
