@@ -14,14 +14,14 @@ It's recommend to take a quick view of the [Ontology Development Guide](https://
 
 ## Install
 
-Updating the `pubspec.yaml` file to contains blew lines:
+For using this package in your project you'd firstly update your `pubspec.yaml` file to contains blew lines:
 
 ```yaml
 dependencies:
   ontology_dart_sdk: ^0.0.1
 ```
 
-then run the package installation command:
+and then run the package installation command:
 
 ```bash
 flutter packages get
