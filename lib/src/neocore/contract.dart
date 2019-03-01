@@ -268,3 +268,10 @@ class VmParamsBuilder extends ScriptBuilder {
 class Struct {
   List<dynamic> list = [];
 }
+
+class StructField {
+  int type;
+  Uint8List bytes;
+
+  StructField(this.type, this.bytes);
+}

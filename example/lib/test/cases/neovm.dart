@@ -136,7 +136,12 @@ var testCases = [
         gasPrice: gasPrice, gasLimit: gasLimit, payer: addr1);
     await b.sign(tx, prikey1);
     var res = await rpc.sendRawTx(await tx.serialize());
-    // assert(res['Result'] == '00');
+    var sb = ScriptReader(Buffer.fromHexStr(res['Result']));
+    var s = sb.readStruct();
+    var f1 = s.list[0] as StructField;
+    var f2 = s.list[1] as StructField;
+    assert(Convert.bytesToBigInt(f1.bytes) ==BigInt.from(100));
+    assert(Convert.bytesToStr(f2.bytes) == 'claimid');
   }),
   TestCase('testNeovmSetMap', () async {
     await setup();

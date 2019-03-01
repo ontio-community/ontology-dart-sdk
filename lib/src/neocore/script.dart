@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import '../common/shim.dart';
 import '../crypto/shim.dart';
 import 'opcode.dart';
+import 'contract.dart';
 
 class ScriptBuilder {
   Buffer buf;
@@ -177,5 +178,17 @@ class ScriptReader extends BufferReader {
       buf.addUint8(byte);
     }
     return buf.bytes;
+  }
+
+  Struct readStruct() {
+    readOpCode();
+    var ret = Struct();
+    var len = readUint8();
+    for (var i = 0; i < len; i++) {
+      var type = readUint8();
+      var bytes = readVarBytes();
+      ret.list.add(StructField(type, bytes));
+    }
+    return ret;
   }
 }

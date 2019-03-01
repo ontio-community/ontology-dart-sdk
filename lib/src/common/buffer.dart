@@ -1,7 +1,8 @@
 import 'dart:typed_data';
+import 'dart:convert';
 import 'package:meta/meta.dart';
 import 'bridge.dart';
-import 'dart:convert';
+import '../common/shim.dart';
 
 class Buffer {
   Uint8List _buf;
@@ -24,6 +25,11 @@ class Buffer {
   Buffer.fromBytes(Uint8List bytes) {
     _init(32);
     bytes.forEach((b) => addUint8(b));
+  }
+
+  Buffer.fromHexStr(String str) {
+    _init(32);
+    Convert.hexStrToBytes(str).forEach((b) => addUint8(b));
   }
 
   grow() {
