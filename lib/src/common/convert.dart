@@ -47,13 +47,13 @@ class Convert {
     return hex.encode(bytes.toList());
   }
 
-  static BigInt hexStrToBigInt({String str, bool bigEndian = true}) {
+  static BigInt hexStrToBigInt(String str, {bool bigEndian = false}) {
     var bytes = hexStrToBytes(str);
     if (!bigEndian) bytes = Uint8List.fromList(bytes.reversed.toList());
     return _decodeBigInt(bytes.toList());
   }
 
-  static BigInt bytesToBigInt(Uint8List bytes, {bool bigEndian = true}) {
+  static BigInt bytesToBigInt(Uint8List bytes, {bool bigEndian = false}) {
     if (!bigEndian) bytes = Uint8List.fromList(bytes.reversed.toList());
     return BigInt.parse(bytesToHexStr(bytes), radix: 16);
   }

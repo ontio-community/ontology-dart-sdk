@@ -492,12 +492,9 @@ class Oep4TxBuilder {
   Future<Transaction> makeTransferMultiTx(
       List<OepState> states, int gasPrice, int gasLimit, Address payer) {
     var fn = 'transferMulti';
-    var args = <dynamic>[];
-    states.forEach((s) => args.add([s.from, s.to, s.amount]));
+    var params = <dynamic>[];
+    states.forEach((s) => params.add([s.from, s.to, s.amount]));
 
-    var pb = VmParamsBuilder();
-    pb.pushParam([args]);
-    var params = pb.buf.bytes;
     var b = TxBuilder();
     return b.makeInvokeTx(fn, params, contract,
         gasPrice: gasPrice, gasLimit: gasLimit, payer: payer);

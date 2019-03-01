@@ -144,7 +144,8 @@ class VmParamsBuilder extends ScriptBuilder {
         pushOpcode(OpCode.append);
       });
     } else {
-      throw ArgumentError('Unsupported param type: ' + obj.runtimeType.toString());
+      throw ArgumentError(
+          'Unsupported param type: ' + obj.runtimeType.toString());
     }
   }
 
@@ -186,7 +187,8 @@ class VmParamsBuilder extends ScriptBuilder {
         pushInt(obj.length);
         pushOpcode(OpCode.pack);
       } else {
-        throw ArgumentError('Unsupported param type: ' + obj.runtimeType.toString());
+        throw ArgumentError(
+            'Unsupported param type: ' + obj.runtimeType.toString());
       }
     }
   }
@@ -231,16 +233,10 @@ class VmParamsBuilder extends ScriptBuilder {
       pushStr(param);
     } else if (param is bool) {
       pushBool(param);
-      pushOpcode(OpCode.push0);
-      pushOpcode(OpCode.boolor);
     } else if (param is int) {
       pushInt(param);
-      pushOpcode(OpCode.push0);
-      pushOpcode(OpCode.add);
     } else if (param is BigInt) {
       pushBigInt(param);
-      pushOpcode(OpCode.push0);
-      pushOpcode(OpCode.add);
     } else if (param is Address) {
       pushAddress(param);
     } else if (param is Struct) {
@@ -256,12 +252,14 @@ class VmParamsBuilder extends ScriptBuilder {
       pushInt(param.length);
       pushOpcode(OpCode.pack);
     } else {
-      throw ArgumentError('Unsupported param type: ' + param.runtimeType.toString());
+      throw ArgumentError(
+          'Unsupported param type: ' + param.runtimeType.toString());
     }
   }
 
   pushFn(String fnName, List<dynamic> params) {
-    pushParam([fnName] + params);
+    pushParam(params);
+    pushParam(fnName);
   }
 }
 

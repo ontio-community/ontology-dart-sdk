@@ -5,6 +5,7 @@ import 'test/cases/wallet.dart' as wallet;
 import 'test/cases/network.dart' as network;
 import 'test/cases/transfer.dart' as transfer;
 import 'test/cases/ontid.dart' as ontid;
+import 'test/cases/oep4.dart' as oep4;
 
 void main() => runApp(MyApp());
 
@@ -19,7 +20,8 @@ class _MyAppState extends TestState {
         wallet.testCases +
         network.testCases +
         transfer.testCases +
-        ontid.testCases;
+        ontid.testCases +
+        oep4.testCases;
     testCases.forEach((t) => addTest(t));
   }
 }

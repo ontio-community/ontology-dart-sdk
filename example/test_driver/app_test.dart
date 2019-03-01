@@ -48,11 +48,26 @@ var ontidTestCases = [
   'testGetDDO',
 ];
 
+var oep4TestCases = [
+  'testOep4Init',
+  'testOep4QueryName',
+  'testOep4QuerySymbol',
+  'testOep4QueryDecimals',
+  'testOep4QueryTotalSupply',
+  'testOep4QueryBalance',
+  'testOep4Transfer',
+  'testOep4Approvel',
+  'testOep4QueryAlloance',
+  'testOep4TransferFrom',
+  'testOep4TransferMulti',
+];
+
 var testCases = cryptoTestCases +
     walletTestCases +
     networkTestCases +
     transferTestCases +
-    ontidTestCases;
+    ontidTestCases +
+    oep4TestCases;
 
 void main() {
   group('Crypto', () {
