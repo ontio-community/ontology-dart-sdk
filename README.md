@@ -24,4 +24,5 @@ Here are the steps to start the tests:
 4. Starting the tests: `cd example/ && flutter drive --target=test_driver/app.dart`
 
 Below is a screenshot from tests:
-<img src="doc/img/tests.gif" with="400">
+
+<img src="doc/img/tests.gif" width="500">
