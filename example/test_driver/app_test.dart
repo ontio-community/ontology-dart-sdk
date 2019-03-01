@@ -62,22 +62,34 @@ var oep4TestCases = [
   'testOep4TransferMulti',
 ];
 
+var neovmTestCase = [
+  'testNeovmName',
+  'testNeovmHello',
+  'testNeovmTrue',
+  'testNeovmFalse',
+  'testNeovmList',
+  'testNeovmStruct',
+  'testNeovmSetMap',
+  'testNeovmGetMap',
+  'testNeovmSetMapInMap',
+  'testNeovmGetMapInMap',
+];
+
 var testCases = cryptoTestCases +
     walletTestCases +
     networkTestCases +
     transferTestCases +
     ontidTestCases +
-    oep4TestCases;
+    oep4TestCases +
+    neovmTestCase;
 
 void main() {
-  group('Crypto', () {
-    var finders = Map<String, SerializableFinder>();
+  group('test', () {
     FlutterDriver driver;
 
     // Connect to the Flutter driver before running any tests
     setUpAll(() async {
       driver = await FlutterDriver.connect();
-      testCases.forEach((name) => finders[name] = find.byValueKey(name));
     });
 
     // Close the connection to the driver after the tests have completed
@@ -89,7 +101,8 @@ void main() {
 
     testCases.forEach((name) {
       test(name, () async {
-        var finder = finders[name];
+        var finder = find.byValueKey(name);
+        await driver.waitFor(finder, timeout: Duration(seconds: 30));
         var text = await driver.getText(finder);
         expect(text.contains('yes'), true);
       });

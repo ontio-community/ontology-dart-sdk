@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'dart:async';
 import 'test_case.dart';
 
@@ -9,6 +10,8 @@ abstract class TestState extends State {
   var _errCnt = 0;
   var _testStates = <dynamic>[];
   var _testWidgets = <Widget>[];
+
+  var _scrollCtrl = ScrollController(initialScrollOffset: 0);
 
   @override
   void initState() {
@@ -37,40 +40,49 @@ abstract class TestState extends State {
       _allCnt = allCnt;
       _errCnt = errCnt;
       _passCnt = doneCnt;
-      _testWidgets = _testStates
-          .map((s) => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 8,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 40),
-                      child: new Text(
-                        '${s['name']}:',
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40),
-                    child: s['state'] == 'testing'
-                        ? SizedBox(
-                            width: 10,
-                            height: 10,
-                            child: CircularProgressIndicator(
-                                valueColor:
-                                    AlwaysStoppedAnimation<Color>(Colors.blue),
-                                strokeWidth: 2.0),
-                          )
-                        : new Text('${s['state']}',
-                            key: Key(s['name']),
-                            style: TextStyle(
-                              color: s['stateColor'],
-                            )),
-                  ),
-                ],
-              ))
-          .toList();
+      _testWidgets = _testStates.map((s) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Expanded(
+              flex: 8,
+              child: Padding(
+                padding: EdgeInsets.only(left: 30),
+                child: Text(
+                  '${s['name']}:',
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 30),
+              child: s['state'] == 'testing'
+                  ? Text('testing',
+                      style: TextStyle(
+                        color: s['stateColor'],
+                      ))
+                  : Text('${s['state']}',
+                      key: Key(s['name']),
+                      style: TextStyle(
+                        color: s['stateColor'],
+                      )),
+            ),
+          ],
+        );
+      }).toList();
     });
+
+    if (_scrollCtrl.hasClients) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        var scrollPosition = _scrollCtrl.position;
+        if (scrollPosition.maxScrollExtent != null) {
+          _scrollCtrl.animateTo(
+            scrollPosition.maxScrollExtent,
+            duration: new Duration(milliseconds: 200),
+            curve: Curves.easeOut,
+          );
+        }
+      });
+    }
   }
 
   Future<void> runTests() async {
@@ -90,7 +102,7 @@ abstract class TestState extends State {
         stateInfo['state'] = 'yes';
         stateInfo['stateColor'] = Colors.green;
       } catch (e, stacktrace) {
-        _errCnt += 1;
+        errCnt += 1;
         stateInfo['state'] = 'no';
         stateInfo['stateColor'] = Colors.red;
         print('[NOT PASS] $name: ' + e.toString());
@@ -126,12 +138,12 @@ abstract class TestState extends State {
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding: EdgeInsets.only(bottom: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: _testWidgets,
-                ),
-              ),
+                  controller: _scrollCtrl,
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: _testWidgets,
+                  )),
             )
           ],
         )));

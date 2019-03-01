@@ -6,6 +6,7 @@ import 'test/cases/network.dart' as network;
 import 'test/cases/transfer.dart' as transfer;
 import 'test/cases/ontid.dart' as ontid;
 import 'test/cases/oep4.dart' as oep4;
+import 'test/cases/neovm.dart' as neovm;
 
 void main() => runApp(MyApp());
 
@@ -21,7 +22,8 @@ class _MyAppState extends TestState {
         network.testCases +
         transfer.testCases +
         ontid.testCases +
-        oep4.testCases;
+        oep4.testCases +
+        neovm.testCases;
     testCases.forEach((t) => addTest(t));
   }
 }

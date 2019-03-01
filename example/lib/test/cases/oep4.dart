@@ -61,43 +61,43 @@ var testCases = [
     await txb.sign(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testOep4QueryName', () async {
     await setup();
     var b = Oep4TxBuilder(await Address.fromValue(codehash));
     var tx = await b.makeQueryNameTx();
     var res = await rpc.sendRawTx(await tx.serialize());
-    return Convert.hexStrToStr(res['Result']) == 'MyToken';
+    assert(Convert.hexStrToStr(res['Result']) == 'MyToken');
   }),
   TestCase('testOep4QuerySymbol', () async {
     await setup();
     var b = Oep4TxBuilder(await Address.fromValue(codehash));
     var tx = await b.makeQuerySymbolTx();
     var res = await rpc.sendRawTx(await tx.serialize());
-    return Convert.hexStrToStr(res['Result']) == 'MYT';
+    assert(Convert.hexStrToStr(res['Result']) == 'MYT');
   }),
   TestCase('testOep4QueryDecimals', () async {
     await setup();
     var b = Oep4TxBuilder(await Address.fromValue(codehash));
     var tx = await b.makeQueryDecimalsTx();
     var res = await rpc.sendRawTx(await tx.serialize());
-    return Convert.hexStrToBigInt(res['Result']) == BigInt.from(8);
+    assert(Convert.hexStrToBigInt(res['Result']) == BigInt.from(8));
   }),
   TestCase('testOep4QueryTotalSupply', () async {
     await setup();
     var b = Oep4TxBuilder(await Address.fromValue(codehash));
     var tx = await b.makeQueryTotalSupplyTx();
     var res = await rpc.sendRawTx(await tx.serialize());
-    return Convert.hexStrToBigInt(res['Result']) ==
-        (BigInt.from(1000000000) * BigInt.from(100000000));
+    assert(Convert.hexStrToBigInt(res['Result']) ==
+        (BigInt.from(1000000000) * BigInt.from(100000000)));
   }),
   TestCase('testOep4QueryBalance', () async {
     await setup();
     var b = Oep4TxBuilder(await Address.fromValue(codehash));
     var tx = await b.makeQueryBalanceOfTx(addr1);
     var res = await rpc.sendRawTx(await tx.serialize());
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testOep4Transfer', () async {
     var from = addr1;
@@ -111,7 +111,7 @@ var testCases = [
     await txb.sign(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testOep4Approvel', () async {
     var owner = addr1;
@@ -125,7 +125,7 @@ var testCases = [
     await txb.sign(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testOep4QueryAlloance', () async {
     await setup();
@@ -134,7 +134,7 @@ var testCases = [
     var b = Oep4TxBuilder(await Address.fromValue(codehash));
     var tx = await b.makeQueryAllowanceTx(owner, spender);
     var res = await rpc.sendRawTx(await tx.serialize());
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testOep4TransferFrom', () async {
     var owner = addr1;
@@ -148,7 +148,7 @@ var testCases = [
     await txb.sign(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testOep4TransferMulti', () async {
     var prikey3 = await PrivateKey.random();
@@ -167,6 +167,6 @@ var testCases = [
     await txb.addSig(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
-    return res != null;
+    assert(res != null);
   }),
 ];

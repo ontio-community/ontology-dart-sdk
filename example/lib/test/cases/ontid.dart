@@ -53,14 +53,13 @@ var testCases = [
     await txb.sign(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testGetDDO', () async {
     await setup();
     var b = OntidTxBuilder();
-    var tx =
-        await b.buildGetDDOTx(ontid);
+    var tx = await b.buildGetDDOTx(ontid);
     var res = await rpc.sendRawTx(await tx.serialize());
-    return res != null;
+    assert(res != null);
   }),
 ];

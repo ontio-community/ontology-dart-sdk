@@ -1,4 +1,4 @@
-typedef Future<bool> Tester();
+typedef Future<void> Tester();
 
 class TestCase {
   String name;

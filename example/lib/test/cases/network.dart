@@ -47,23 +47,23 @@ var testCases = [
   TestCase('testWsRpcGetNodeCount', () async {
     await setup();
     var res = await rpc.getNodeCount();
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testWsRpcBlockHeight', () async {
     await setup();
     var res = await rpc.getBlockHeight();
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testWsRpcGetBalance', () async {
     await setup();
     var res = await rpc.getBalance(addr1);
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testWsRpcUnclaimedOng', () async {
     await setup();
     var addr = await Address.fromBase58('ASSxYHNSsh4FdF2iNvHdh3Np2sgWU21hfp');
     var res = await rpc.getUnclaimedOng(addr);
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testWsRpcSendRawTx', () async {
     await setup();
@@ -75,7 +75,7 @@ var testCases = [
     await txb.sign(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize());
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testWsRpcSendRawTxWait', () async {
     await setup();
@@ -87,6 +87,6 @@ var testCases = [
     await txb.sign(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
-    return res != null;
+    assert(res != null);
   }),
 ];

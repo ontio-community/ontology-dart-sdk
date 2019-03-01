@@ -37,7 +37,7 @@ class AbiParameterType {
       case 'Map':
         return map;
       default:
-        throw ArgumentError('Unsupported type: ' + name);
+        return null;
     }
   }
 }
@@ -71,8 +71,9 @@ class AbiFunction {
   AbiFunction.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     returnType = json['returnType'];
-    parameters = (json['parameters'] as List<dynamic>)
-        .map((p) => AbiParameter.fromJson(p));
+    parameters = List.from(json['parameters'])
+        .map((p) => AbiParameter.fromJson(p))
+        .toList();
   }
 
   Map<String, dynamic> toJson() =>
@@ -98,8 +99,9 @@ class AbiInfo {
   AbiInfo.fromJson(Map<String, dynamic> json) {
     hash = json['hash'];
     entryPoint = json['entryPoint'];
-    functions = (json['functions'] as List<dynamic>)
-        .map((p) => AbiFunction.fromJson(p));
+    functions = List.from(json['functions'])
+        .map((p) => AbiFunction.fromJson(p))
+        .toList();
   }
 
   Map<String, dynamic> toJson() =>

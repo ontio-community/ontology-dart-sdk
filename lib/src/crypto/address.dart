@@ -24,6 +24,10 @@ class Address {
     return hex.encode(value.reversed.toList());
   }
 
+  String get hexEncoded {
+    return hex.encode(value);
+  }
+
   Uint8List get valueLE {
     return Uint8List.fromList(value.reversed.toList());
   }

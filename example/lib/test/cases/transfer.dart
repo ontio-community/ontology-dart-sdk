@@ -49,7 +49,7 @@ var testCases = [
     await txb.sign(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testTransferOng', () async {
     await setup();
@@ -64,7 +64,7 @@ var testCases = [
     await txb.sign(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testTransferWithSm2Account', () async {
     await setup();
@@ -79,7 +79,7 @@ var testCases = [
     await txb.sign(tx, prikey2, schema: SignatureSchema.sm2Sm3);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
-    return res != null;
+    assert(res != null);
   }),
   TestCase('testWithdrawOng', () async {
     await setup();
@@ -94,6 +94,6 @@ var testCases = [
     await txb.sign(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
-    return res != null;
+    assert(res != null);
   }),
 ];
