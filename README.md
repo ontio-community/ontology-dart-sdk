@@ -19,7 +19,7 @@ Testing in flutter is interesting, our test code and business code run in two se
 Here are the steps to start the tests:
 
 1. Downloading the executable binary file of Ontology from it's [release page](https://github.com/ontio/ontology/releases). The version used in the tests is `ontology version v1.6.0-8-g754303c0`
-2. Copying the test wallet located in file `example/lib/test/common/wallet.dart` and save it into file `wallet.dat` then put the saved wallet file and the Ontology binary from step 1 under the same directory.
+2. Copying the test wallet located in file [example/lib/test/common/wallet.dart](example/lib/test/common/wallet.dart) and save it into file `wallet.dat` then put the saved wallet file and the Ontology binary from step 1 under the same directory.
 3. Starting Ontology node runs in test mode `./ontology --testmode --loglevel=1`
 4. Starting the tests: `cd example/ && flutter drive --target=test_driver/app.dart`
 
