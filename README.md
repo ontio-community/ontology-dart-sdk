@@ -12,7 +12,7 @@ It supports:
 
 It's recommend to take a quick view of the [Ontology Development Guide](https://dev-docs.ont.io/#/docs-en/SDKs/00-overview) before your development. The [test cases](example/lib/test/cases) folder contains various examples they are also worth a glance.
 
-[API reference](https://pub.dartlang.org/documentation/ontology_dart_sdk/latest/)
+[Online API reference](https://pub.dartlang.org/documentation/ontology_dart_sdk/latest/) or view it on [filesystem](doc/api/index.html).
 
 ## Install
 
