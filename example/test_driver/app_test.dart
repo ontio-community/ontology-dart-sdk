@@ -34,9 +34,17 @@ var networkTestCases = [
   'testWsRpcUnclaimedOng',
   'testWsRpcSendRawTx',
   'testWsRpcSendRawTxWait',
+  'testWithdrawOng',
 ];
 
-var testCases = cryptoTestCases + walletTestCases + networkTestCases;
+var transferTestCases = [
+  'testTransferOnt',
+  'testTransferOng',
+  'testTransferWithSm2Account',
+];
+
+var testCases =
+    cryptoTestCases + walletTestCases + networkTestCases + transferTestCases;
 
 void main() {
   group('Crypto', () {

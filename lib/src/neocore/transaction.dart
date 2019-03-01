@@ -343,7 +343,7 @@ class OntAssetTxBuilder {
     amount = verifyAmount(amount);
     var struct = Struct();
     struct.list
-        .addAll([from, await getTokenContractAddr(ontContract), to, amount]);
+        .addAll([from, await getTokenContractAddr('ONT'), to, amount]);
 
     var pb = VmParamsBuilder();
     pb.pushNativeCodeScript([struct]);
@@ -351,7 +351,7 @@ class OntAssetTxBuilder {
 
     var txb = TxBuilder();
     var tx = await txb.makeNativeContractTx(
-        'transferFrom', params, await getTokenContractAddr(ongContract),
+        'transferFrom', params, await getTokenContractAddr('ONG'),
         gasPrice: gasPrice, gasLimit: gasLimit, payer: payer);
 
     tx.tokenType = 'ONG';

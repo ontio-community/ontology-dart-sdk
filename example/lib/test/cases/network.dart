@@ -26,13 +26,13 @@ Future<void> setup() async {
   if (isSetupDone) return;
 
   w = wallet4test();
-  prikey1 = await w.accounts[0].decrypt('123456', params: w.scrypt);
+  prikey1 = await w.accounts[0].decrypt('password', params: w.scrypt);
   pubkey1 = await prikey1.getPublicKey();
   addr1 = await Address.fromBase58(w.accounts[0].address);
 
   prikey = await PrivateKey.random();
   pubkey = await prikey.getPublicKey();
-  acc = await Account.create('123456', prikey: prikey);
+  acc = await Account.create('password', prikey: prikey);
   addr = await Address.fromBase58(acc.address);
 
   ontid = 'did:ont:' + (await addr.toBase58());

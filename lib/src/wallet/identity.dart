@@ -22,9 +22,7 @@ class ControlData {
     var algo = KeyType.fromLabel(json['algorithm']);
     var params = KeyParameters.fromJson(json['parameters']);
     var key = Convert.base64ToBytes(json['key']);
-    var scrypt = ScryptParams.fromJson(json['scrypt']);
-    encryptedKey =
-        PrivateKey(key, algorithm: algo, parameters: params, scrypt: scrypt);
+    encryptedKey = PrivateKey(key, algorithm: algo, parameters: params);
   }
 
   Map<String, dynamic> toJson() => {

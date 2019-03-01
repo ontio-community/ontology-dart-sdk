@@ -7,7 +7,7 @@ import 'package:ontology_dart_sdk/wallet.dart';
 var testCases = [
   TestCase('testAccountFromEncrypted', () async {
     var prikey = await PrivateKey.random();
-    var pwd = '123456';
+    var pwd = 'password';
     var acc = await Account.create(pwd, prikey: prikey);
     var enc = acc.encryptedKey;
     var addr = await Address.fromBase58(acc.address);
@@ -28,7 +28,7 @@ var testCases = [
   }),
   TestCase('testIdentityCreate', () async {
     var prikey = await PrivateKey.random();
-    var pwd = '123456';
+    var pwd = 'password';
     var label = 'mickey';
     var id = await Identity.create(prikey, pwd, label);
     var json = jsonEncode(id);
@@ -38,7 +38,7 @@ var testCases = [
   }),
   TestCase('testIdentityFromEncrypted', () async {
     var prikey = await PrivateKey.random();
-    var pwd = '123456';
+    var pwd = 'password';
     var label = 'mickey';
     var id = await Identity.create(prikey, pwd, label);
     var enc = id.controls[0].encryptedKey;
@@ -66,7 +66,7 @@ var testCases = [
   TestCase('testWalletAddAccount', () async {
     var w = Wallet('mickey');
     var prikey = await PrivateKey.random();
-    var acc = await Account.create('123456', prikey: prikey, label: 'mickey');
+    var acc = await Account.create('password', prikey: prikey, label: 'mickey');
     w.addAccount(acc);
     return w.accounts.length == 1;
   }),
