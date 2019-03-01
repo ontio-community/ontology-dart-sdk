@@ -4,6 +4,7 @@ import 'test/cases/crypto.dart' as crypto;
 import 'test/cases/wallet.dart' as wallet;
 import 'test/cases/network.dart' as network;
 import 'test/cases/transfer.dart' as transfer;
+import 'test/cases/ontid.dart' as ontid;
 
 void main() => runApp(MyApp());
 
@@ -17,7 +18,8 @@ class _MyAppState extends TestState {
     var testCases = crypto.testCases +
         wallet.testCases +
         network.testCases +
-        transfer.testCases;
+        transfer.testCases +
+        ontid.testCases;
     testCases.forEach((t) => addTest(t));
   }
 }

@@ -104,7 +104,7 @@ class TxSignature {
 
 abstract class Signable {
   Future<Uint8List> signContent();
-  Uint8List serializeUnsignedData();
+  Future<Uint8List> serializeUnsignedData();
 }
 
 class Transaction extends Signable {
@@ -160,10 +160,15 @@ class Transaction extends Signable {
     return tx;
   }
 
-  Uint8List serializeUnsignedData() {
+  Future<Uint8List> serializeUnsignedData() async {
     var sb = ScriptBuilder();
     sb.pushNum(version);
     sb.pushNum(type.value);
+
+    gasPrice = gasPrice ?? 0;
+    gasLimit = gasLimit ?? 20000;
+    payer = payer ??
+        await Address.fromValue('0000000000000000000000000000000000000000');
 
     sb.pushRawBytes(Convert.hexStrToBytes(nonce));
     sb.pushNum(gasPrice, len: 8, bigEndian: false);
@@ -178,7 +183,7 @@ class Transaction extends Signable {
 
   @override
   Future<Uint8List> signContent() async {
-    var data = serializeUnsignedData();
+    var data = await serializeUnsignedData();
     return Hash.sha256sha256(data);
   }
 
@@ -192,7 +197,7 @@ class Transaction extends Signable {
   }
 
   Future<Uint8List> serialize() async {
-    var us = serializeUnsignedData();
+    var us = await serializeUnsignedData();
     var ss = await serializeSignedData();
     var buf = Buffer.fromBytes(us);
     buf.appendBytes(ss);
@@ -342,8 +347,7 @@ class OntAssetTxBuilder {
       int gasPrice, int gasLimit, Address payer) async {
     amount = verifyAmount(amount);
     var struct = Struct();
-    struct.list
-        .addAll([from, await getTokenContractAddr('ONT'), to, amount]);
+    struct.list.addAll([from, await getTokenContractAddr('ONT'), to, amount]);
 
     var pb = VmParamsBuilder();
     pb.pushNativeCodeScript([struct]);

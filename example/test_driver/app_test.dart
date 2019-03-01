@@ -43,8 +43,16 @@ var transferTestCases = [
   'testTransferWithSm2Account',
 ];
 
-var testCases =
-    cryptoTestCases + walletTestCases + networkTestCases + transferTestCases;
+var ontidTestCases = [
+  'testRegisterOntId',
+  'testGetDDO',
+];
+
+var testCases = cryptoTestCases +
+    walletTestCases +
+    networkTestCases +
+    transferTestCases +
+    ontidTestCases;
 
 void main() {
   group('Crypto', () {
