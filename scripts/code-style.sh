@@ -7,3 +7,5 @@ swiftformat $ROOT
 
 # format objc files
 find $ROOT/ios/Classes/ -iname *.h -o -iname *.m | xargs clang-format -i -style=file
+
+flutter format lib

@@ -18,7 +18,7 @@ For using this package in your project you'd firstly update your `pubspec.yaml` 
 
 ```yaml
 dependencies:
-  ontology_dart_sdk: ^0.0.1
+  ontology_dart_sdk: ^1.0.0
 ```
 
 and then run the package installation command:
@@ -40,4 +40,4 @@ Here are the steps to start the tests:
 
 Below is a screenshot from tests:
 
-<img src="doc/img/tests.gif" width="500">
+<img src="https://raw.githubusercontent.com/hsiaosiyuan0/ontology-dart-sdk/master/doc/img/tests.gif" width="500">

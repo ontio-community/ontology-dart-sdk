@@ -1,11 +1,14 @@
 name: ontology_dart_sdk
-description: Dart SDK For Ontology blockchain.
-version: 0.0.1
-author: hsiaosiyuan<hsiaosiyuan0@outlook.com>
+description: >-
+  The Dart SDK For Ontology blockchain.
+  It supports wallet management, digital identity management, digital asset management, 
+  smart Contract deployment and invocation, antology blockchain API.
+version: 1.0.1
+author: hsiaosiyuan <hsiaosiyuan@gmail.com>
 homepage: https://github.com/ontio-community/ontology-dart-sdk
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.1.0-dev.9.4 <3.0.0"
 
 dependencies:
   flutter:
