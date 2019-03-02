@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="made with love by dartdoc 0.24.1">
+  <meta name="description" content="ontology_dart_sdk API docs, for the Dart programming language.">
+  <title>ontology_dart_sdk - Dart API docs</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/ontio-community/ontology-dart-sdk">ontology_dart_sdk package</a></li>
+  </ol>
+  <div class="self-name">ontology_dart_sdk</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <h5><span class="package-name">ontology_dart_sdk</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="common/common-library.html">common</a></li>
+          <li><a href="crypto/crypto-library.html">crypto</a></li>
+          <li><a href="neocore/neocore-library.html">neocore</a></li>
+          <li><a href="network/network-library.html">network</a></li>
+          <li><a href="settings/settings-library.html">settings</a></li>
+          <li><a href="wallet/wallet-library.html">wallet</a></li>
+    </ol>
+  </div>
+
+  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <section class="desc markdown">
+        <h1 align="center">Dart SDK For Ontology blockchain</h1>
+<p>This is a Dart SDK for the Ontology blockchain and could be used in the Flutter development.</p>
+<p>It supports:</p><ul><li>Wallet management</li><li>Digital identity management</li><li>Digital asset management</li><li>Smart Contract deployment and invocation</li><li>Ontology blockchain API</li></ul>
+<p>It's recommend to take a quick view of the <a href="https://dev-docs.ont.io/#/docs-en/SDKs/00-overview">Ontology Development Guide</a> before your development. The <a href="example/lib/test/cases">test cases</a> folder contains various examples they are also worth a glance.</p>
+<p><a href="https://pub.dartlang.org/documentation/ontology_dart_sdk/latest/">API reference</a></p>
+<h2 id="install">Install</h2>
+<p>For using this package in your project you'd firstly update your <code>pubspec.yaml</code> file to contains blew lines:</p>
+<pre class="language-yaml"><code class="language-yaml">dependencies:
+  ontology_dart_sdk: ^1.0.0
+</code></pre>
+<p>and then run the package installation command:</p>
+<pre class="language-bash"><code class="language-bash">flutter packages get
+</code></pre>
+<h2 id="run-the-tests">Run the tests</h2>
+<p>Testing in flutter is interesting, our test code and business code run in two separate processes. The test code takes  screen captures of the running business code to perform further predicate code. For more details under this mechanism please refer <a href="https://flutter.dev/docs/cookbook/testing/integration/introduction">integration testing</a>.</p>
+<p>Here are the steps to start the tests:</p><ol><li>Downloading the executable binary file of Ontology from it's <a href="https://github.com/ontio/ontology/releases">release page</a>. The version used in the tests is <code>ontology version v1.6.0-8-g754303c0</code></li><li>Copying the test wallet located in file <a href="example/lib/test/common/wallet.dart">example/lib/test/common/wallet.dart</a> and save it into file <code>wallet.dat</code> then put the saved wallet file and the Ontology binary from step 1 under the same directory.</li><li>Starting Ontology node runs in test mode <code>./ontology --testmode --loglevel=1</code></li><li>Starting the tests: <code>cd example/ &amp;&amp; flutter drive --target=test_driver/app.dart</code></li></ol>
+<p>Below is a screenshot from tests:</p><img src="https://raw.githubusercontent.com/hsiaosiyuan0/ontology-dart-sdk/master/doc/img/tests.gif" width="500">
+      </section>
+      
+        <section class="summary">
+            <h2>Libraries</h2>
+          <dl>
+            <dt id="common">
+              <span class="name"><a href="common/common-library.html">common</a></span> 
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="crypto">
+              <span class="name"><a href="crypto/crypto-library.html">crypto</a></span> 
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="neocore">
+              <span class="name"><a href="neocore/neocore-library.html">neocore</a></span> 
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="network">
+              <span class="name"><a href="network/network-library.html">network</a></span> 
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="settings">
+              <span class="name"><a href="settings/settings-library.html">settings</a></span> 
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="wallet">
+              <span class="name"><a href="wallet/wallet-library.html">wallet</a></span> 
+            </dt>
+            <dd>
+              
+            </dd>          </dl>
+        </section>
+
+  </div> <!-- /.main-content -->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    ontology_dart_sdk 1.0.2
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="API docs for the addUint64 method from the Buffer class, for the Dart programming language.">
+  <title>addUint64 method - Buffer class - common library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">ontology_dart_sdk</a></li>
+    <li><a href="common/common-library.html">common</a></li>
+    <li><a href="common/Buffer-class.html">Buffer</a></li>
+    <li class="self-crumb">addUint64 method</li>
+  </ol>
+  <div class="self-name">addUint64</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <h5>Buffer class</h5>
+    <ol>
+      <li class="section-title"><a href="common/Buffer-class.html#constructors">Constructors</a></li>
+      <li><a href="common/Buffer/Buffer.html">Buffer</a></li>
+      <li><a href="common/Buffer/Buffer.fromBytes.html">fromBytes</a></li>
+      <li><a href="common/Buffer/Buffer.fromHexStr.html">fromHexStr</a></li>
+    
+      <li class="section-title">
+        <a href="common/Buffer-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="common/Buffer/bytes.html">bytes</a></li>
+      <li><a href="common/Buffer/utf8string.html">utf8string</a></li>
+      <li class="inherited"><a href="common/Buffer/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="common/Buffer/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="common/Buffer-class.html#instance-methods">Methods</a></li>
+      <li><a href="common/Buffer/addInt8.html">addInt8</a></li>
+      <li><a href="common/Buffer/addInt16.html">addInt16</a></li>
+      <li><a href="common/Buffer/addInt32.html">addInt32</a></li>
+      <li><a href="common/Buffer/addInt64.html">addInt64</a></li>
+      <li><a href="common/Buffer/addUint8.html">addUint8</a></li>
+      <li><a href="common/Buffer/addUint16.html">addUint16</a></li>
+      <li><a href="common/Buffer/addUint32.html">addUint32</a></li>
+      <li><a href="common/Buffer/addUint64.html">addUint64</a></li>
+      <li><a href="common/Buffer/appendBytes.html">appendBytes</a></li>
+      <li><a href="common/Buffer/grow.html">grow</a></li>
+      <li><a href="common/Buffer/readUint8.html">readUint8</a></li>
+      <li><a href="common/Buffer/readUint16.html">readUint16</a></li>
+      <li><a href="common/Buffer/readUint32.html">readUint32</a></li>
+      <li><a href="common/Buffer/readUint64.html">readUint64</a></li>
+      <li class="inherited"><a href="common/Buffer/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="common/Buffer/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="common/Buffer-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="common/Buffer/operator_equals.html">operator ==</a></li>
+    
+    
+      <li class="section-title"><a href="common/Buffer-class.html#static-methods">Static methods</a></li>
+      <li><a href="common/Buffer/random.html">random</a></li>
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+    <h1>addUint64 method</h1>
+
+    <section class="multi-line-signature">
+      <span class="returntype">dynamic</span>
+      <span class="name ">addUint64</span>
+(<wbr>{<span class="parameter" id="addUint64-param-v"><span class="type-annotation">int</span> <span class="parameter-name">v</span>, </span> <span class="parameter" id="addUint64-param-bigEndian"><span class="type-annotation">bool</span> <span class="parameter-name">bigEndian</span>: <span class="default-value">true</span></span> })
+      
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span> </h2>
+      <pre class="language-dart"><code class="language-dart">addUint64({int v, bool bigEndian = true}) {
+  grow();
+  _view.setUint64(_writePos, v, bigEndian ? Endian.big : Endian.little);
+  _writePos += 8;
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    ontology_dart_sdk 1.0.2
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>
