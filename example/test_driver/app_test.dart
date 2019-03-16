@@ -18,6 +18,7 @@ var cryptoTestCases = [
 
 var walletTestCases = [
   'testAccountFromEncrypted',
+  'testInvalidPassword',
   'testAccountFromKeystore',
   'testIdentityCreate',
   'testIdentityFromEncrypted',

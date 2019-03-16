@@ -15,6 +15,20 @@ var testCases = [
     var dec = await acc.decrypt(pwd);
     assert(Convert.bytesToHexStr(dec.raw) == Convert.bytesToHexStr(prikey.raw));
   }),
+  TestCase('testInvalidPassword', () async {
+    // decryping using an invalid password should not crash the running process
+    // and the exceptions shoule be catchable by dartlang
+    var prikey = await PrivateKey.random();
+    var pwd = 'password';
+    var acc = await Account.create(pwd, prikey: prikey);
+    var enc = acc.encryptedKey;
+    var addr = await Address.fromBase58(acc.address);
+    acc = await Account.fromEncryptedKey(enc, 'mickey', pwd, addr, acc.salt);
+    try {
+      await acc.decrypt('a invalid password');
+    } catch (e) {
+    }
+  }),
   TestCase('testAccountFromKeystore', () async {
     var str = """
     {"address":"AG9W6c7nNhaiywcyVPgW9hQKvUYQr5iLvk","key":"+UADcReBcLq0pn/2Grmz+UJsKl3ryop8pgRVHbQVgTBfT0lho06Svh4eQLSmC93j","parameters":{"curve":"P-256"},"label":"11111","scrypt":{"dkLen":64,"n":4096,"p":8,"r":8},"salt":"IfxFV0Fer5LknIyCLP2P2w==","type":"A","algorithm":"ECDSA"}
