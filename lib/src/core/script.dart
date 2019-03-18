@@ -1,6 +1,6 @@
 import 'dart:typed_data';
-import '../common/shim.dart';
-import '../crypto/shim.dart';
+import 'package:ontology_dart_sdk/common.dart';
+import 'package:ontology_dart_sdk/crypto.dart';
 import 'opcode.dart';
 import 'contract.dart';
 

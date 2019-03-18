@@ -1,6 +1,6 @@
 import 'dart:typed_data';
-import '../common/shim.dart';
-import '../constant.dart';
+import 'package:ontology_dart_sdk/common.dart';
+import 'package:ontology_dart_sdk/constant.dart';
 import 'package:collection/collection.dart';
 
 class SignatureSchema {

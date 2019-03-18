@@ -1,1 +1,1 @@
-export './src/constant.dart';
+export 'constant.dart';

@@ -2,7 +2,7 @@ import 'dart:typed_data';
 import 'dart:convert';
 import 'package:meta/meta.dart';
 import 'bridge.dart';
-import '../common/shim.dart';
+import 'package:ontology_dart_sdk/common.dart';
 
 class Buffer {
   Uint8List _buf;

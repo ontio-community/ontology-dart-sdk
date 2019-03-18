@@ -1,0 +1,1 @@
+export './src/smart_contract/shim.dart';

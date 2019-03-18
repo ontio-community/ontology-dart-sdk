@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import '../common/convert.dart';
+import 'package:ontology_dart_sdk/common.dart';
 import 'script.dart';
 
 abstract class Payload {

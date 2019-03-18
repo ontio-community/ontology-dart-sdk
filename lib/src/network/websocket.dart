@@ -3,9 +3,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:web_socket_channel/io.dart';
 import 'package:uuid/uuid.dart';
-import '../common/shim.dart';
-import '../crypto/shim.dart';
-import '../neocore/shim.dart';
+import 'package:ontology_dart_sdk/common.dart';
+import 'package:ontology_dart_sdk/crypto.dart';
+import 'package:ontology_dart_sdk/smart_contract.dart';
 
 enum WebsocketRpcState { connected, reconnecting, closed }
 

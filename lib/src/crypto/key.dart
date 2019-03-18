@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 import 'package:collection/collection.dart';
-import '../constant.dart';
-import '../common/shim.dart';
+import 'package:ontology_dart_sdk/constant.dart';
+import 'package:ontology_dart_sdk/common.dart';
 import 'signature.dart';
 import 'bridge.dart';
 import 'scrypt.dart';
