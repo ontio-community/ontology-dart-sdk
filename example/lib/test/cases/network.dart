@@ -22,6 +22,8 @@ String ontid;
 int gasPrice = 0;
 int gasLimit = 20000;
 
+JsonRpc jsonRpc;
+
 var isSetupDone = false;
 Future<void> setup() async {
   if (isSetupDone) return;
@@ -41,6 +43,7 @@ Future<void> setup() async {
   rpc = WebsocketRpc('ws://127.0.0.1:20335');
   rpc.connect();
 
+  jsonRpc = JsonRpc('http://127.0.0.1:20336');
   isSetupDone = true;
 }
 
@@ -88,6 +91,10 @@ var testCases = [
     await txb.sign(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
+    assert(res != null);
+  }),
+  TestCase('testJsonRpcGetNodeCount', () async {
+    var res = await jsonRpc.getNodeCount();
     assert(res != null);
   }),
 ];

@@ -36,6 +36,7 @@ var networkTestCases = [
   'testWsRpcSendRawTx',
   'testWsRpcSendRawTxWait',
   'testWithdrawOng',
+  'testJsonRpcGetNodeCount'
 ];
 
 var transferTestCases = [
