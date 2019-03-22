@@ -2,7 +2,8 @@ import '../test_case.dart';
 import 'package:ontology_dart_sdk/network.dart';
 import 'package:ontology_dart_sdk/crypto.dart';
 import 'package:ontology_dart_sdk/wallet.dart';
-import 'package:ontology_dart_sdk/neocore.dart';
+import 'package:ontology_dart_sdk/core.dart';
+import 'package:ontology_dart_sdk/smart_contract.dart';
 import '../common/wallet.dart';
 
 WebsocketRpc rpc;
@@ -20,6 +21,8 @@ String ontid;
 
 int gasPrice = 0;
 int gasLimit = 20000;
+
+JsonRpc jsonRpc;
 
 var isSetupDone = false;
 Future<void> setup() async {
@@ -40,6 +43,7 @@ Future<void> setup() async {
   rpc = WebsocketRpc('ws://127.0.0.1:20335');
   rpc.connect();
 
+  jsonRpc = JsonRpc('http://127.0.0.1:20336');
   isSetupDone = true;
 }
 
@@ -87,6 +91,10 @@ var testCases = [
     await txb.sign(tx, prikey1);
 
     var res = await rpc.sendRawTx(await tx.serialize(), preExec: false);
+    assert(res != null);
+  }),
+  TestCase('testJsonRpcGetNodeCount', () async {
+    var res = await jsonRpc.getNodeCount();
     assert(res != null);
   }),
 ];

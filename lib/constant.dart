@@ -1,4 +1,4 @@
-import 'common/convert.dart';
+import 'common.dart';
 
 class Constant {
   static Map<String, dynamic> defaultAlgorithm = {

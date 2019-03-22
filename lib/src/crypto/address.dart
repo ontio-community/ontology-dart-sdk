@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 import 'package:convert/convert.dart';
-import '../common/shim.dart';
-import '../neocore/shim.dart';
-import '../constant.dart';
+import 'package:ontology_dart_sdk/common.dart';
+import 'package:ontology_dart_sdk/core.dart';
+import 'package:ontology_dart_sdk/constant.dart';
 import 'base58.dart';
 import 'hash.dart';
 import 'key.dart';

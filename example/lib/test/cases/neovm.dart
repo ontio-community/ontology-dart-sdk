@@ -4,7 +4,7 @@ import '../test_case.dart';
 import 'package:ontology_dart_sdk/network.dart';
 import 'package:ontology_dart_sdk/crypto.dart';
 import 'package:ontology_dart_sdk/wallet.dart';
-import 'package:ontology_dart_sdk/neocore.dart';
+import 'package:ontology_dart_sdk/core.dart';
 import 'package:ontology_dart_sdk/common.dart';
 import '../common/wallet.dart';
 import '../common/neovm.dart';

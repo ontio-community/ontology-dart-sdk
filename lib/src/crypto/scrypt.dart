@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 import 'package:meta/meta.dart';
-import '../constant.dart';
+import 'package:ontology_dart_sdk/constant.dart';
 import 'bridge.dart';
 
 class Scrypt {
